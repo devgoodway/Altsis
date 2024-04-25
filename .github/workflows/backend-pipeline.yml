@@ -81,16 +81,16 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      # 슬랙 알림
-      - name: Send Slack Notification
-        uses: 8398a7/action-slack@v3
-        with:
-          author_name: backend-CI
-          status: ${{ job.status }}
-          fields: workflow,job,author,message,took
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-        if: always() # Pick up events even if the job fails or is canceled.
+      # # 슬랙 알림
+      # - name: Send Slack Notification
+      #   uses: 8398a7/action-slack@v3
+      #   with:
+      #     author_name: backend-CI
+      #     status: ${{ job.status }}
+      #     fields: workflow,job,author,message,took
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+      #   if: always() # Pick up events even if the job fails or is canceled.
 
   backend-CD:
     name: backend-CD
@@ -132,14 +132,14 @@ jobs:
           docker image prune -f
           docker images
 
-      # 슬랙 알림
-      - name: Send Slack Notification
-        uses: 8398a7/action-slack@v3
-        with:
-          author_name: backend-CD
-          status: ${{ job.status }}
-          fields: workflow,job,author,message,took
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-          MATRIX_CONTEXT: ${{ toJson(matrix) }} # required
-        if: always() # Pick up events even if the job fails or is canceled.
+      # # 슬랙 알림
+      # - name: Send Slack Notification
+      #   uses: 8398a7/action-slack@v3
+      #   with:
+      #     author_name: backend-CD
+      #     status: ${{ job.status }}
+      #     fields: workflow,job,author,message,took
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+      #     MATRIX_CONTEXT: ${{ toJson(matrix) }} # required
+      #   if: always() # Pick up events even if the job fails or is canceled.
