@@ -70,7 +70,11 @@ jobs:
           context: backend
           file: ./backend/Dockerfile
           push: true
+<<<<<<< Updated upstream
           tags: "ghcr.io/devgoodway/altsis_backend:latest"
+=======
+          tags: "ghcr.io/bmrdevteam/altsis_backend:latest"
+>>>>>>> Stashed changes
           # (3)
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
@@ -81,7 +85,11 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
+<<<<<<< Updated upstream
       # # 슬랙 알림
+=======
+      # 슬랙 알림
+>>>>>>> Stashed changes
       # - name: Send Slack Notification
       #   uses: 8398a7/action-slack@v3
       #   with:
@@ -118,7 +126,11 @@ jobs:
       # Pull images
       - name: Docker pull
         run: |
+<<<<<<< Updated upstream
           docker pull ghcr.io/devgoodway/altsis_backend:latest
+=======
+          docker pull ghcr.io/bmrdevteam/altsis_backend:latest
+>>>>>>> Stashed changes
 
       # Run containers
       - name: Docker run
@@ -132,7 +144,11 @@ jobs:
           docker image prune -f
           docker images
 
+<<<<<<< Updated upstream
       # # 슬랙 알림
+=======
+      # 슬랙 알림
+>>>>>>> Stashed changes
       # - name: Send Slack Notification
       #   uses: 8398a7/action-slack@v3
       #   with:

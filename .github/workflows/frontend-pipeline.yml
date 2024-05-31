@@ -62,7 +62,11 @@ jobs:
           --delete \
           ./build ${{secrets.S3_BUCKET_CLIENT}} \
 
+<<<<<<< Updated upstream
       # # 슬랙 알림
+=======
+      # 슬랙 알림
+>>>>>>> Stashed changes
       # - name: Send Slack Notification
       #   uses: 8398a7/action-slack@v3
       #   with:
