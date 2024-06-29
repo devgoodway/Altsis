@@ -51,7 +51,7 @@ jobs:
           echo "saltRounts= ${{secrets.SALTROUNTS}}" >> .env
           echo "session_key= ${{secrets.SESSION_KEY}}" >> .env
           echo "GOOGLE_CLIENT_ID= ${{secrets.GOOGLE_CLIENT_ID}}" >> .env
-          echo "URL= ${{secrets.URL}}" >> .env
+          echo "URL= https://d22vp0gkqhvqys.cloudfront.net" >> .env
           echo "SERVER_PORT= ${{env.SERVER_PORT}}" >> .env
           echo "ENCKEY_E= ${{secrets.ENCKEY_E}}" >> .env
           echo "SIGKEY_E= ${{secrets.SIGKEY_E}}" >> .env
