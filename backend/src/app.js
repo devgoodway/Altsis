@@ -40,7 +40,7 @@ app.use(
     secret: process.env["session_key"].trim(),
     cookie: {
       httpOnly: true, // 브라우저에서 쿠키값에 대한 접근을 하지 못하게 막는다.
-      // secure: false, // HTTPS 통신 외에서는 쿠키를 전달하지 않는다.
+      secure: false, // HTTPS 통신 외에서는 쿠키를 전달하지 않는다.
     },
     rolling: true,
     store: new RedisStore({
