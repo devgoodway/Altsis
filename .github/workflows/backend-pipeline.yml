@@ -70,7 +70,7 @@ jobs:
           context: backend
           file: ./backend/Dockerfile
           push: true
-          tags: "ghcr.io/bmrdevteam/altsis_backend:latest"
+          tags: "ghcr.io/devgoodway/altsis_backend:latest"
           # (3)
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
@@ -107,7 +107,7 @@ jobs:
       # Pull images
       - name: Docker pull
         run: |
-          docker pull ghcr.io/bmrdevteam/altsis_backend:latest
+          docker pull ghcr.io/devgoodway/altsis_backend:latest
 
       # Run containers
       - name: Docker run
