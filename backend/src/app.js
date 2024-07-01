@@ -29,8 +29,6 @@ app.use(
   cors({
     origin: process.env["URL"].trim(),
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
   })
   // cors() //테스트를 위해 모든 도메인에서 오는 요청 허용(임시)
 );
@@ -90,10 +88,6 @@ app.use(
 
 routers.forEach((router) => {
   app.use("/api/" + router.label, router.routes);
-});
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
 });
 
 app.set("port", process.env["SERVER_PORT"].trim() || 3000);
