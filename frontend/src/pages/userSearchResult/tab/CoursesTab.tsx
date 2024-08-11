@@ -74,9 +74,9 @@ const CoursesTab = (props: Props) => {
       <Select
         options={[
           { text: "시간표", value: "timeTable" },
-          { text: "수강신청 현황", value: "enrollments" },
-          { text: "개설한 수업 목록", value: "myDesgins" },
-          { text: "담당 수업 목록", value: "mentoring" },
+          { text: "수강 현황", value: "enrollments" },
+          { text: "개설 수업", value: "myDesgins" },
+          { text: "담당 수업", value: "mentoring" },
         ]}
         onChange={setSelectedTab}
         appearence={"flat"}
@@ -163,16 +163,68 @@ const Enrollments = (props: {
   enrolledCourseList: any[];
 }) => {
   const { currentSeason } = useAuth();
+  const { currentRegistration } = useAuth();
 
   if (props.selected !== "enrollments") {
     return null;
   }
 
+console.log(props);
+  // 학점의 총합
+  let total = 0;
+
+  props.enrolledCourseList.forEach((item) => {
+    total += item.point; 
+  });
+
+  // 평가 현황
+  let evaluationCount:any =  {};
+  let evaluationKey:any =  {};
+  props.enrolledCourseList.forEach((item) => {
+    if (item.evaluation) {
+      Object.keys(item.evaluation).forEach((key) => {
+        if (item.evaluation[key] !== '') {
+          evaluationKey[key] = key;
+          evaluationCount[key] = (evaluationCount[key] || 0) + 1;
+        }
+      });
+    }
+  });
+
+  let evaluation = "평가 현황";
+  Object.keys(evaluationCount).forEach((key)=>{
+    let emo = "";
+    if(evaluationCount[key] >= props.enrolledCourseList.length){
+      emo = "🟩";
+    }else{
+      emo = "🟥";
+    }
+    evaluation += " | " +  evaluationKey[key] + "[" + evaluationCount[key] + "/" + props.enrolledCourseList.length + "]" + emo;
+  })
+
+  console.log(props.enrolledCourseList);
+
   return (
-    <CourseTable
-      data={props.enrolledCourseList}
-      subjectLabels={currentSeason?.subjects?.label ?? []}
-    />
+    <>
+      <div style={{
+        fontSize: "14px",
+        fontWeight: "500",
+        marginTop:"10px",
+        marginBottom:"10px",
+        padding:"5px"
+        }}> 학점 현황 | {total}점</div>
+        {(currentRegistration.role === "teacher") && <div style={{
+          fontSize: "14px",
+          fontWeight: "500",
+          marginTop:"10px",
+          marginBottom:"10px",
+          padding:"5px"
+          }}> {evaluation}</div>}
+      <CourseTable
+        data={props.enrolledCourseList}
+        subjectLabels={currentSeason?.subjects?.label ?? []}
+      />
+    </>
   );
 };
 
